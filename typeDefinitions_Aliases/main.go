@@ -7,7 +7,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/go_pluralsight_beginner/interfaces_structs/organization"
+	"github.com/go_pluralsight_beginner/typeDefinitions_Aliases/organization"
 )
 
 func main() {
