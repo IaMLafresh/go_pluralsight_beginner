@@ -13,6 +13,7 @@ import (
 func main() {
 	p := organization.NewPerson("Mike", "LaBreche")
 	err := p.SetTwitterHandler("@IAM")
+	fmt.Printf("%T\n", organization.TwitterHandler("test"))
 	if err != nil {
 		fmt.Printf("An error occurred setting Twitter handler: %s\n", err.Error())
 	}
