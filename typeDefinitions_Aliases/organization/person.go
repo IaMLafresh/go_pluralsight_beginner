@@ -6,7 +6,12 @@ import (
 	"strings"
 )
 
-type TwitterHandler = string
+type TwitterHandler string
+
+func (th TwitterHandler) RedirectURL() string {
+	cleanHandler := strings.TrimPrefix(string(th), "@")
+	return fmt.Sprintf("https://www.twitter.com/%s", cleanHandler)
+}
 
 type Idenfifiable interface {
 	ID() string
@@ -36,7 +41,7 @@ func NewPerson(firstName, lastName string) Person {
 func (p *Person) SetTwitterHandler(handler TwitterHandler) error {
 	if len(handler) == 0 {
 		p.twitterHandler = handler
-	} else if !strings.HasPrefix(handler, "@") {
+	} else if !strings.HasPrefix(string(handler), "@") {
 		return errors.New("Twitter handler must start with an @ symbol")
 	}
 
@@ -44,6 +49,6 @@ func (p *Person) SetTwitterHandler(handler TwitterHandler) error {
 	return nil
 }
 
-func (p Person) GetTwitterHandler() string {
+func (p Person) GetTwitterHandler() TwitterHandler {
 	return p.twitterHandler
 }
