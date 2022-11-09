@@ -11,13 +11,14 @@ import (
 )
 
 func main() {
-	p := organization.NewPerson("Mike", "LaBreche")
+	p := organization.NewPerson("Mike", "LaBreche", organization.NewSocialSecurityNumber("123-45-6789"))
 	err := p.SetTwitterHandler("@IAM")
 	fmt.Printf("%T\n", organization.TwitterHandler("test"))
 	if err != nil {
 		fmt.Printf("An error occurred setting Twitter handler: %s\n", err.Error())
 	}
 	println(p.GetTwitterHandler())
+	println(p.GetTwitterHandler().RedirectURL())
 	println(p.ID())
 	println(p.FullName())
 }
